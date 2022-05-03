@@ -1,0 +1,27 @@
+.formUrl{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.urlForm{
+    display: flex;
+    flex-direction: column;
+}
+.url{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    gap: 20px;
+    width: 80%;
+    height: 40px;
+    background: #E3E6EC ;
+    box-shadow: 4.5px 4.5px 5px #D1D9E6, -4.5px -4.5px 5px #FFFFFF;
+}
+.url-to-copy{
+    display: flex;
+}
