@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap");
-
+@import url("./App.scss");
 @import "./components/Home/Home.scss";
 @import "./components/Header/Header.scss";
-@import "./components/Profile/Profile.scss"
+@import "./components/Profile/Profile.scss";
+@import "./components/Footer/Footer.scss";
+@import "./components/Login/Login.scss"

@@ -1,7 +1,8 @@
-import React,{useEffect, useState} from "react"
-
+import React,{useContext, useDebugValue, useEffect, useState} from "react"
 import { Header } from "../Header/Header"
 import {gql,useQuery} from '@apollo/client'
+import { UserContext } from '../../App.js'
+
 
 const GET_URL_SAVE = gql`
     query($userName: String!){
@@ -14,20 +15,18 @@ const GET_URL_SAVE = gql`
 
 
 export const Profile = () => {
-    
-    const [userName,setUserName] = useState('')
+    const [user,setUser] = useContext(UserContext)
 
-    const {loading,error,data} = useQuery(GET_URL_SAVE,{
-        variables:{userName}
+    const {data} = useQuery(GET_URL_SAVE,{
+        variables:{userName : user.userName}
         
     })
 
-    console.log(data)
 
     useEffect(()=> {
         const userJSON = window.localStorage.getItem('userlogged')
         const userLogged = JSON.parse(userJSON)
-        setUserName(userLogged.userName)
+        setUser(userLogged)
     },[])
     
     

@@ -8,6 +8,6 @@ export const  LoginPage = () => {
     const handleLogIn = () => {
         setHandleLog(!handleLog)
     }
-    return <>{handleLog ? <><Login/> <button onClick={handleLogIn}>Go to register</button></> : <><Register/><button onClick={handleLogIn}>Go to Login</button></>} </>
+    return <div className="log-container">{handleLog ? <><Login/> <button onClick={handleLogIn}>Go to register</button></> : <><Register/><button onClick={handleLogIn}>Go to Login</button></>} </div>
     
 }

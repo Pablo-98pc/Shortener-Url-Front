@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import './Login.css'
+
 import { useForm } from "react-hook-form";
 import {InputCustom} from "../MUI-components/InputCustom"
 import { Button } from "@mui/material";
@@ -31,6 +31,8 @@ const schema = yup.object().shape({
 
 
 export  const Login = () => {
+  const [user,setUser] = useState([])
+  const navigate = useNavigate()
     const {
         control: controlLogin,
         handleSubmit,
@@ -55,14 +57,14 @@ export  const Login = () => {
           const password = props.password
         try {
            loginUser({variables:{userName,password}})
+
         } catch (error) {
             
             console.error(error)
         }
       };
 
-    const [user,setUser] = useState([])
-    const navigate = useNavigate()
+    
 
     return <form onSubmit={handleSubmit(onSubmit)}>
         <InputCustom name="userName" control={controlLogin} label="UserName" id="login" errors={errorsLogin.userName}/>

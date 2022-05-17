@@ -20,7 +20,7 @@ export const LastUrl = () => {
     },[data])
 
     useEffect(()=> {
-        console.log(newUrl)
+        
     },[newUrl])
 
     return<><h4> Last Url Created : {newUrl}</h4><LatestUrlSubcription setNewUrl={setNewUrl}/></>

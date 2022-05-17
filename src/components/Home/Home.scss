@@ -1,27 +1,32 @@
 .formUrl{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 .urlForm{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
-.url{
+
+.url-to-copy{
     display: flex;
-    justify-content: center;
+}
+.url-generated{
+    display: flex;
+    flex-direction: row;
     align-items: center;
+}
+.subcriptions-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.last-url{
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
-    gap: 20px;
-    width: 80%;
-    height: 40px;
-    background: #E3E6EC ;
+    background: linear-gradient(108.3deg, #70E8BD 23.49%, #66DBB1 76.7%);
     box-shadow: 4.5px 4.5px 5px #D1D9E6, -4.5px -4.5px 5px #FFFFFF;
-}
-.url-to-copy{
-    display: flex;
+    
 }

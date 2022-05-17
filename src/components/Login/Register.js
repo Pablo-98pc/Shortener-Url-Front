@@ -48,14 +48,14 @@ export const Register = () => {
         resolver: yupResolver(schema),
       }); 
       const onSubmit = async (props) => {
-          console.log('entra')
+        
         const userName = props.userName
         const password = props.password
         try {
             registerUser({variables:{userName,password}})
             
         } catch (error) {
-            console.error(error)
+            console.log(error.message)
         }
       }
 

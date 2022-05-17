@@ -4,15 +4,10 @@ import { Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { gql, useMutation } from '@apollo/client';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-import React,{useEffect,useState} from "react"
 
-const schema = yup.object().shape({
-    urlName : yup
-    .string()
-    .required('name for url is required')
-    
-  })
 
 const ADD_URL = gql`
     mutation($url: String!, $userName: String!, $urlName: String!){
@@ -23,13 +18,24 @@ const ADD_URL = gql`
     }
 `
   
-
+const schema = yup.object().shape({
+    urlName : yup
+    .string()
+    .required('a name is required')
+    
+  })
 
 export const SaveUrl = (props) => {
     const userName = props.userName
     const url = props.url
-    const [addUrl,{data,loading,error}] = useMutation(ADD_URL)
+    const navigate = useNavigate()
+    const [addUrl,{data}] = useMutation(ADD_URL)
 
+    useEffect(()=> {
+        if(data){
+            navigate('/Profile')
+        }
+    },[data])
     const {
         control: controlUrlSave,
         handleSubmit,
@@ -42,13 +48,14 @@ export const SaveUrl = (props) => {
         const urlName = props.urlName
         try {
             addUrl({variables:{url,userName,urlName}})
+            
         } catch (error) {
             console.error(error)
         }
     }  
 
     return <form onSubmit={handleSubmit(onSubmit)}>
-        <InputCustom name="urlName" control={controlUrlSave} label="url-name" id="add-url" errors={errorsUrlSave}/>
+        <InputCustom name="urlName" control={controlUrlSave} label="url-name" id="add-url" errors={errorsUrlSave.urlName}/>
         <Button variant="contained" type="submit">Save</Button>
     </form>
 

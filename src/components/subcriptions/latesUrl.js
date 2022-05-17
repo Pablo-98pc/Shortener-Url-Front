@@ -20,7 +20,7 @@ export const LatestUrlSubcription = ({setNewUrl}) => {
         if(!loading && data){
             setNewUrl(data.latestUrl.value) 
         }
-       console.log(data)
+      
     },[data])
     
     return null;

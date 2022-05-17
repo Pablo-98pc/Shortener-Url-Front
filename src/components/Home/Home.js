@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState,useContext} from "react"
 import CopyToCliboard  from "react-copy-to-clipboard"
 import { useForm } from "react-hook-form";
 import {InputCustom} from "../MUI-components/InputCustom"
@@ -10,6 +10,8 @@ import { Header } from "../Header/Header"
 import { SaveUrl } from "./saveUrl";
 import { LastUrl } from "../MileStone/LastUrl";
 import { LastCount } from "../MileStone/LastCount";
+import {UserContext} from '../../App'
+import {Footer} from "../Footer/Footer";
 
 const isValidUrl = (url) => {
   try {
@@ -39,9 +41,12 @@ const schema = yup.object().shape({
 })
 
 export const Home = () => {
-  const [createUrl,{data,loading,error}] = useMutation(CREATE_URL)
-
-  const [userName,setUserName] = useState('') 
+  const [user,setUser] = useContext(UserContext)
+  const [createUrl,{data}] = useMutation(CREATE_URL)
+  useEffect(()=> {
+    
+  },[])
+  
 
   const {
     control: controlUrl,
@@ -74,7 +79,7 @@ export const Home = () => {
   useEffect(()=> {
     const userJSON = window.localStorage.getItem('userlogged')
     const userLogged = JSON.parse(userJSON)
-    setUserName(userLogged.userName)
+    setUser(userLogged)
       
   },[])
   
@@ -87,13 +92,18 @@ export const Home = () => {
           <Button variant="contained" type="submit">Generate</Button>
           {url  ? <button onClick={handleReset}>delete</button> : null}
         </form>
-        <div className="url-generated">
-        {data ? <><div className="url-to-copy"><p className="url">{data.createUrl.value}</p><CopyToCliboard text={data.createUrl.value}><Button>Copy</Button></CopyToCliboard></div> <SaveUrl userName={userName} url={data.createUrl.value}/> </> : null} 
+      </div>
+      <div className="url-generated">
+        {data ? <><div className="url-to-copy"><p className="url">{data.createUrl.value}</p><CopyToCliboard text={data.createUrl.value}><Button>Copy</Button></CopyToCliboard></div> <SaveUrl userName={user.userName} url={data.createUrl.value}/> </> : null} 
         </div>
-      </div> 
     </div>
-     <LastUrl/>
-     <LastCount/>
+    <div className="subcriptions-info">
+      <div className="last-url">
+        <LastUrl/>
+      </div>
+      <LastCount/>
+    </div>
+    <Footer/>
   </>
 }
 

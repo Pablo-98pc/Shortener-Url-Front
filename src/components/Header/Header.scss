@@ -2,9 +2,11 @@ a {
     text-decoration: none;
 }
 
-header {
+
+.header-login {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding: 10px;
+    gap: 10px;
 }
